@@ -33,12 +33,12 @@ public class UserController {
     }
 
     @GetMapping("/new")
-    public String addUser(User user) {
+    public String createNewUser(User user) {
         return "create";
     }
 
     @PostMapping("/new")
-    public String add(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
+    public String addUserData(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "create";
         } else {
@@ -54,13 +54,13 @@ public class UserController {
     }
 
     @GetMapping("edit/{id}")
-    public String updateUserById(@PathVariable("id") long id, Model model) {
+    public String editIdUserData(@PathVariable("id") long id, Model model) {
         model.addAttribute(userService.getUserById(id));
         return "edit";
     }
 
     @PatchMapping("/edit")
-    public String updateUser(@Valid User user, BindingResult bindingResult) {
+    public String editUserData(@Valid User user, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "edit";
         } else {
